@@ -4,30 +4,29 @@
   box-sizing: border-box;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  height: 350px;
+.bg-custom {
+  background-color: #6c63ff;
+  color: white;
 }
 
-#headerLogo {
-  width: 40%;
-  height: 90%;
+#searchDiv {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../imgs/oblaci.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#VrijemeDiv {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#headerNaslov {
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#demoFont {
+/* #demoFont {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 80px;
   letter-spacing: 2.2px;
@@ -38,4 +37,4 @@ header {
   font-style: italic;
   font-variant: normal;
   text-transform: capitalize;
-}
+} */
