@@ -4,7 +4,7 @@ var searchParametar = "q";
 
 function pretraziVrijeme(Grad) {
   fetch(
-    `http://api.openweathermap.org/data/2.5/weather?${searchParametar}=${Grad}&APPID=${key}&units={jedinica}&cnt=7`
+    `http://api.openweathermap.org/data/2.5/weather?${searchParametar}=${Grad}&APPID=${key}&units={jedinica}`
   )
     .then(rezultat => {
       return rezultat.json();
