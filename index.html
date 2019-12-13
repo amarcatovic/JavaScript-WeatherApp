@@ -40,20 +40,17 @@
               <a class="nav-link" href="#">News</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          <div class="form-inline my-2 my-lg-0">
             <input
               id="inputBtnNav"
               class="form-control mr-sm-2"
               type="text"
-              placeholder="Ne ovdje Search"
+              placeholder="Search"
             />
-            <button
-              id="searchBtnNav"
-              class="btn btn-outline-success my-2 my-sm-0"
-            >
+            <button id="searchBtnNav" class="btn btn-primary">
               Search
             </button>
-          </form>
+          </div>
         </div>
       </nav>
     </header>
@@ -65,12 +62,72 @@
         style="width: 300px;"
         placeholder="Search"
       />
-      <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0">
+      <button id="searchBtn" class="btn btn-primary">
         Search
       </button>
     </div>
 
-    <div id="VrijemeDiv"></div>
+    <script>
+      var polje = document.querySelector("#inputBtn");
+      polje.addEventListener("keyup", function x(e) {
+        console.log(e);
+        if (e.keyCode == 13) {
+          pretraziVrijeme(document.querySelector("#inputBtn").value);
+        }
+      });
+      var searchDiv = document.querySelector("#searchDiv");
+      searchDiv.style.height = "100vh";
+      var niz = ["bg1.jpg", "bg2.jpg", "bg3.jpg", "bg4.jpg"];
+      var pozadina = document.querySelector("#searchDiv");
+      var index = niz[Math.floor(Math.random() * 4)];
+      pozadina.style.backgroundImage = `url('Assets/imgs/${index}')`;
+    </script>
+
+    <div id="VrijemeDiv">
+      <div id="rezultatLeft">
+        <h3 id="weatherIn">Weather in</h3>
+        <div class="pair">
+          <img id="weatherLogo" alt="Logo weather" />
+          <p id="stepeniP">2 °C</p>
+        </div>
+        <div class="pair">
+          <p id="opisVremena">Rain</p>
+          <a href="">Wrong data?</a>
+        </div>
+      </div>
+      <div id="rezultatRight">
+        <div class="pair">
+          <img id="windImg" src="Assets/imgs/vjetar.svg" alt="Wind Logo" />
+          <p id="windP">5 m/s</p>
+        </div>
+        <div class="pair">
+          <img
+            id="windDir"
+            src="Assets/imgs/windDirLogo.png"
+            alt="Wind direction"
+          />
+          <p id="windDirP">360° North</p>
+        </div>
+        <div class="pair">
+          <img
+            id="pritisakImg"
+            src="Assets/imgs/pritisakLogo.png"
+            alt="Pritisak logo"
+          />
+          <p id="pritisakP">1000 hPa</p>
+        </div>
+        <div class="pair">
+          <img id="sunriseImg" src="Assets/imgs/sunrise.png" alt="Sunrise" />
+          <p id="sunriseP">07:00</p>
+        </div>
+        <div class="pair">
+          <img id="sunsetImg" src="Assets/imgs/sunset.png" alt="Sunset" />
+          <p id="sunsetP">16:20</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="soundOff"></div> -->
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
