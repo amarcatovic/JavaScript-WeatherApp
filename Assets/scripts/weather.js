@@ -5,7 +5,8 @@ var logoVremena = document.getElementById("VrijemeDiv");
 
 function pretraziVrijeme(Grad) {
   fetch(
-    `http://api.openweathermap.org/data/2.5/weather?${searchParametar}=${Grad}&APPID=${key}&units={jedinica}&cnt=7`
+    //`http://api.openweathermap.org/data/2.5/weather?${searchParametar}=${Grad}&APPID=${key}&cnt=7`
+    `https://api.openweathermap.org/data/2.5/forecast?q=${Grad}&APPID=c918647878d1f020d5c226f15183e169`
   )
     .then(rezultat => {
       return rezultat.json();
@@ -16,6 +17,20 @@ function pretraziVrijeme(Grad) {
     .catch(function(err) {
       console.log("Nepoznat grad " + err);
     });
+
+  /*fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${Grad}&APPID=${key}`
+  )
+    .then(rezultat => {
+      return rezultat.json();
+    })
+    .then(rezultat => {
+      //initHourly(rezultat);
+      console.log(rezultat);
+    })
+    .catch(function(err) {
+      console.log("Nepoznat grad " + err);
+    });*/
 }
 
 function init(rezultatServer) {
@@ -45,7 +60,7 @@ function init(rezultatServer) {
     x.play();
   }
 
-  switch (rezultatServer.weather[0].main) {
+  switch (rezultatServer.list[0].weather[0].main) {
     case "Rain":
       console.log("KIŠA");
       var niz = [
@@ -132,6 +147,18 @@ document.querySelector("#searchBtn").addEventListener("keyup", function(event) {
   }
 });
 
+document
+  .querySelector("#inputBtnNav")
+  .addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      var trazi = document.querySelector("#inputBtnNav").value;
+      if (trazi) {
+        pretraziVrijeme(trazi);
+        document.querySelector("#searchBtnNav").click();
+      }
+    }
+  });
+
 document.querySelector("#searchBtnNav").addEventListener("click", () => {
   var trazi = document.querySelector("#inputBtnNav").value;
   if (trazi) {
@@ -146,37 +173,102 @@ function popuniPodatke(rezultatServer) {
   document.querySelector("#searchDiv").style.display = "none";
   var mjestoPretrage = document.querySelector("#weatherIn");
   var opisVremena = document.querySelector("#opisVremena");
-  mjestoPretrage.innerHTML = `Weather in ${rezultatServer.name}, ${rezultatServer.sys.country}`;
-  opisVremena.innerHTML = rezultatServer.weather[0].description;
+  mjestoPretrage.innerHTML = `${rezultatServer.city.name}`;
+  opisVremena.innerHTML = rezultatServer.list[0].weather[0].description;
 
   var stepeni = document.querySelector("#stepeniP");
-  var stepeniC = Math.round(rezultatServer.main.temp - 273.15);
+  var stepeniC = Math.round(rezultatServer.list[0].main.temp - 273.15);
   stepeni.innerHTML = stepeniC + "°C";
 
   var vrijemeLogo = document.querySelector("#weatherLogo");
   vrijemeLogo.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${rezultatServer.weather[0].icon}@2x.png`
+    `http://openweathermap.org/img/wn/${rezultatServer.list[0].weather[0].icon}@2x.png`
   );
 
   var windSpeed = document.querySelector("#windP");
   var windDir = document.querySelector("#windDirP");
-  windSpeed.innerHTML = rezultatServer.wind.speed + " m/s";
-  windDir.innerHTML = rezultatServer.wind.deg + "°";
+  windSpeed.innerHTML = rezultatServer.list[0].wind.speed + " m/s";
+  windDir.innerHTML = rezultatServer.list[0].wind.deg + "°";
 
   var pritisak = document.querySelector("#pritisakP");
-  pritisak.innerHTML = rezultatServer.main.pressure + "hPa";
+  pritisak.innerHTML = rezultatServer.list[0].main.pressure + "hPa";
 
   var sunrise = document.querySelector("#sunriseP");
   var sunset = document.querySelector("#sunsetP");
   sunrise.innerHTML = new Date(
-    (rezultatServer.sys.sunrise + rezultatServer.timezone) * 1000
+    (rezultatServer.city.sunrise + rezultatServer.city.timezone) * 1000
   )
     .toISOString()
     .substr(11, 5);
   sunset.innerHTML = new Date(
-    (rezultatServer.sys.sunset + rezultatServer.timezone) * 1000
+    (rezultatServer.city.sunset + rezultatServer.city.timezone) * 1000
   )
     .toISOString()
     .substr(11, 5);
+
+  var dani = [
+    "Nedjelja",
+    "Ponedjeljak",
+    "Utorak",
+    "Srijeda",
+    "Četvrtak",
+    "Petak",
+    "Subota"
+  ];
+  document.querySelector("#petDana").style.display = "flex";
+  document.querySelector("#d1").innerHTML =
+    dani[new Date(rezultatServer.list[8].dt * 1000).getDay()];
+  document.querySelector("#p1").innerHTML =
+    Math.round(rezultatServer.list[8].main.temp - 273.15) + "°C";
+  document
+    .querySelector("#s1")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${rezultatServer.list[8].weather[0].icon}@2x.png`
+    );
+
+  document.querySelector("#d2").innerHTML =
+    dani[new Date(rezultatServer.list[16].dt * 1000).getDay()];
+  document.querySelector("#p2").innerHTML =
+    Math.round(rezultatServer.list[16].main.temp - 273.15) + "°C";
+  document
+    .querySelector("#s2")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${rezultatServer.list[16].weather[0].icon}@2x.png`
+    );
+
+  document.querySelector("#d3").innerHTML =
+    dani[new Date(rezultatServer.list[24].dt * 1000).getDay()];
+  document.querySelector("#p3").innerHTML =
+    Math.round(rezultatServer.list[24].main.temp - 273.15) + "°C";
+  document
+    .querySelector("#s3")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${rezultatServer.list[24].weather[0].icon}@2x.png`
+    );
+
+  document.querySelector("#d4").innerHTML =
+    dani[new Date(rezultatServer.list[32].dt * 1000).getDay()];
+  document.querySelector("#p4").innerHTML =
+    Math.round(rezultatServer.list[32].main.temp - 273.15) + "°C";
+  document
+    .querySelector("#s4")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${rezultatServer.list[32].weather[0].icon}@2x.png`
+    );
+
+  document.querySelector("#d5").innerHTML =
+    dani[new Date(rezultatServer.list[39].dt * 1000).getDay()];
+  document.querySelector("#p5").innerHTML =
+    Math.round(rezultatServer.list[39].main.temp - 273.15) + "°C";
+  document
+    .querySelector("#s5")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${rezultatServer.list[39].weather[0].icon}@2x.png`
+    );
 }

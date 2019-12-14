@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="Assets/css/styles.css" />
-    <title>Weather Radar</title>
+    <title>Music Weather Radar</title>
   </head>
   <body>
     <header>
@@ -32,12 +32,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="index.html"
                 >Home <span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">News</a>
+              <a class="nav-link" href="https://openweathermap.org/forecast5"
+                >API</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://zeforge.org/">ZeForge</a>
             </li>
           </ul>
           <div class="form-inline my-2 my-lg-0">
@@ -83,50 +88,78 @@
       pozadina.style.backgroundImage = `url('Assets/imgs/${index}')`;
     </script>
 
-    <div id="VrijemeDiv">
-      <div id="rezultatLeft">
-        <h3 id="weatherIn">Weather in</h3>
-        <div class="pair">
-          <img id="weatherLogo" alt="Logo weather" />
-          <p id="stepeniP">2 °C</p>
+    <div id="rezultat">
+      <div id="VrijemeDiv">
+        <div id="rezultatLeft">
+          <h3 id="weatherIn">Weather in</h3>
+          <div class="pair">
+            <img id="weatherLogo" alt="Logo weather" />
+            <p id="stepeniP">2 °C</p>
+          </div>
+          <div class="pair">
+            <p id="opisVremena">Rain</p>
+            <!-- <a href="">Wrong data?</a> -->
+          </div>
         </div>
-        <div class="pair">
-          <p id="opisVremena">Rain</p>
-          <a href="">Wrong data?</a>
+        <div id="rezultatRight">
+          <div class="pair">
+            <img id="windImg" src="Assets/imgs/vjetar.svg" alt="Wind Logo" />
+            <p id="windP">5 m/s</p>
+          </div>
+          <div class="pair">
+            <img
+              id="windDir"
+              src="Assets/imgs/windDirLogo.png"
+              alt="Wind direction"
+            />
+            <p id="windDirP">360° North</p>
+          </div>
+          <div class="pair">
+            <img
+              id="pritisakImg"
+              src="Assets/imgs/pritisakLogo.png"
+              alt="Pritisak logo"
+            />
+            <p id="pritisakP">1000 hPa</p>
+          </div>
+          <div class="pair">
+            <img id="sunriseImg" src="Assets/imgs/sunrise.png" alt="Sunrise" />
+            <p id="sunriseP">07:00</p>
+          </div>
+          <div class="pair">
+            <img id="sunsetImg" src="Assets/imgs/sunset.png" alt="Sunset" />
+            <p id="sunsetP">16:20</p>
+          </div>
         </div>
       </div>
-      <div id="rezultatRight">
-        <div class="pair">
-          <img id="windImg" src="Assets/imgs/vjetar.svg" alt="Wind Logo" />
-          <p id="windP">5 m/s</p>
+      <div id="petDana">
+        <div class="prognozaPetDana">
+          <p id="d1">Ponedjeljak</p>
+          <img id="s1" alt="" />
+          <p id="p1">1°C</p>
         </div>
-        <div class="pair">
-          <img
-            id="windDir"
-            src="Assets/imgs/windDirLogo.png"
-            alt="Wind direction"
-          />
-          <p id="windDirP">360° North</p>
+        <div class="prognozaPetDana">
+          <p id="d2">Ponedjeljak</p>
+          <img id="s2" alt="" />
+          <p id="p2">1°C</p>
         </div>
-        <div class="pair">
-          <img
-            id="pritisakImg"
-            src="Assets/imgs/pritisakLogo.png"
-            alt="Pritisak logo"
-          />
-          <p id="pritisakP">1000 hPa</p>
+        <div class="prognozaPetDana">
+          <p id="d3">Ponedjeljak</p>
+          <img id="s3" alt="" />
+          <p id="p3">1°C</p>
         </div>
-        <div class="pair">
-          <img id="sunriseImg" src="Assets/imgs/sunrise.png" alt="Sunrise" />
-          <p id="sunriseP">07:00</p>
+        <div class="prognozaPetDana">
+          <p id="d4">Ponedjeljak</p>
+          <img id="s4" alt="" />
+          <p id="p4">1°C</p>
         </div>
-        <div class="pair">
-          <img id="sunsetImg" src="Assets/imgs/sunset.png" alt="Sunset" />
-          <p id="sunsetP">16:20</p>
+        <div class="prognozaPetDana">
+          <p id="d5">Ponedjeljak</p>
+          <img id="s5" alt="" />
+          <p id="p5">1°C</p>
         </div>
       </div>
     </div>
-
     <!-- <div id="soundOff"></div> -->
 
     <script

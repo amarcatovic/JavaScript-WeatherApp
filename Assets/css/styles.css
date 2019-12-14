@@ -50,21 +50,30 @@ header {
 
 .pair {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  margin: 20px;
-  
 }
 
 img {
   width: 50px;
+  margin-right: 20px;
 }
 
-p {
+h3, p {
   font-weight: bold;
   font-size: 50px;
   color:background-color: rgba(96, 45, 250, 0.7);
+}
+
+h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#opisVremena{
+  font-size: 20px;
 }
 
 #soundOff {
@@ -74,4 +83,40 @@ p {
   bottom: 20px;
   right: 20px;
   height: 50px;
+}
+
+#petDana{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 60px;
+}
+
+.prognozaPetDana{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#rezultat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column-reverse;
+  background-image: url("../imgs/prognoza.jpg");
+  background-size: cover;
+  color: white;
+}
+
+
+@media only screen and (min-width: 401px) {
+  
+  #petDana{
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
 }
