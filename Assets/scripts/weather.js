@@ -1,11 +1,7 @@
-var key = "c918647878d1f020d5c226f15183e169";
-var jedinica = "metric";
-var searchParametar = "q";
 var logoVremena = document.getElementById("VrijemeDiv");
 
 function pretraziVrijeme(Grad) {
   fetch(
-    //`http://api.openweathermap.org/data/2.5/weather?${searchParametar}=${Grad}&APPID=${key}&cnt=7`
     `https://api.openweathermap.org/data/2.5/forecast?q=${Grad}&APPID=c918647878d1f020d5c226f15183e169`
   )
     .then(rezultat => {
@@ -17,20 +13,6 @@ function pretraziVrijeme(Grad) {
     .catch(function(err) {
       console.log("Nepoznat grad " + err);
     });
-
-  /*fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${Grad}&APPID=${key}`
-  )
-    .then(rezultat => {
-      return rezultat.json();
-    })
-    .then(rezultat => {
-      //initHourly(rezultat);
-      console.log(rezultat);
-    })
-    .catch(function(err) {
-      console.log("Nepoznat grad " + err);
-    });*/
 }
 
 function init(rezultatServer) {
